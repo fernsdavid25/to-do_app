@@ -6,7 +6,10 @@
 - **Task Management**: Create, read, update, and delete tasks.
 - **Search & Sort**: Filter tasks by name, status, or date.
 - **Responsive Design**: optimized for all devices.
+- **Fast Loading & Smart Caching**: Powered by React Query, ensuring instant page loads and minimized network requests.
+- **Real-time Sync**: Tasks update instantly across all devices using Supabase Realtime. To test it, login to the app in two different devices using the same account and try to add a task in one device, it should appear in the other device instantly(this also works for updating, marking as complete and deleting).
 - **Additional Features**: toast notifications for user feedback, confirmation dialog for deletion, validation for empty fields, empty states, and loading states.
+
 
 ## Prerequisites
 
@@ -53,6 +56,9 @@ using (auth.uid() = user_id);
 create policy "Users can delete their own tasks" 
 on tasks for delete 
 using (auth.uid() = user_id);
+
+-- Enable Realtime
+alter publication supabase_realtime add table tasks;
 ```
 
 ### 2. Environment Variables

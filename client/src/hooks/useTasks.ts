@@ -110,10 +110,29 @@ export const useTasks = (options: UseTasksOptions = {}) => {
             .on(
                 'postgres_changes',
                 {
-                    event: '*',
+                    event: 'INSERT',
                     schema: 'public',
                     table: 'tasks',
                     filter: `user_id=eq.${user.id}`
+                },
+                handleRealtimeChange
+            )
+            .on(
+                'postgres_changes',
+                {
+                    event: 'UPDATE',
+                    schema: 'public',
+                    table: 'tasks',
+                    filter: `user_id=eq.${user.id}`
+                },
+                handleRealtimeChange
+            )
+            .on(
+                'postgres_changes',
+                {
+                    event: 'DELETE',
+                    schema: 'public',
+                    table: 'tasks'
                 },
                 handleRealtimeChange
             )
