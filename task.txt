@@ -1,0 +1,31 @@
+Full Stack Assignment
+
+Build a To-Do List App
+
+Objective
+Build a simple To-Do List application that allows users to create, update and delete tasks. The application should be built using React, Node.js and TypeScript.
+
+Requirements
+The application should have two pages - a "Home" page that displays a list of tasks and an "Add Task" page that allows users to add new tasks.
+The "Home" page should display a list of tasks that includes the task's name and status (e.g. "Complete", "Incomplete").
+Users should be able to mark tasks as complete or incomplete.
+Users should be able to delete tasks from the list.
+The "Add Task" page should have a form that allows users to enter a new task name and status.
+The application should use a RESTful API to handle data requests.
+All code should be written in TypeScript.
+The front-end should be built using React and the back-end should be built using Node.js.
+
+Technical Details
+You may use any front-end or back-end libraries or frameworks you wish, but the core of the application must be built using React and Node.js.
+The application should be responsive and work on all screen sizes.
+The application should be styled using CSS.
+The application should be deployed to a public URL (e.g. Heroku, Netlify, etc.).
+You should include a README file that explains how to run the application locally and any other details you feel are necessary.
+
+Bonus Features
+If you finish the above requirements with time to spare, you can add additional features to the application. Here are some suggestions:
+Add user authentication (e.g. allow users to create accounts, log in, and view their own tasks).
+Allow users to filter tasks by status (e.g. "Complete", "Incomplete").
+Allow users to sort tasks by name or status.
+Add search functionality to allow users to search for tasks by name.
+Add a feature to allow users to edit existing tasks.
