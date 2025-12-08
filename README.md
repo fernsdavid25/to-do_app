@@ -11,6 +11,12 @@
 - **Additional Features**: toast notifications for user feedback, confirmation dialog for deletion, validation for empty fields, empty states, and loading states.
 
 
+## Design Decisions
+
+### UX/UI Choices
+- **Task Creation Workflow**: The requirements mentioned including a "Status" field in the Add Task form. I intentionally omitted this to streamline the user experience.
+  - **Rationale**: A "To-Do" app is primarily for tracking incomplete tasks. Creating a task that is already "Complete" is an edge case that doesn't justify complicating the primary creation flow. By default, all new tasks are "Incomplete". If a user needs to log a completed task, they can create it and immediately check it off in the list view. This reduces friction for the 99% use case.
+
 ## Prerequisites
 
 - Node.js (v18 or higher)
