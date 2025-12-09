@@ -52,7 +52,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
             }}
             onClick={handleCardClick}
         >
-            <div
+            <motion.div
+                layout
                 style={{
                     padding: '1rem',
                     display: 'flex',
@@ -60,11 +61,13 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                     justifyContent: 'space-between'
                 }}
             >
-                <div
+                <motion.div
+                    layout
                     className="flex items-center gap-3"
                     style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}
                 >
-                    <div
+                    <motion.div
+                        layout
                         onClick={(e) => {
                             e.stopPropagation();
                             onToggle(task.id, !task.is_complete);
@@ -78,46 +81,52 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                         }}
                     >
                         {task.is_complete ? <Check size={24} /> : <Circle size={24} />}
-                    </div>
+                    </motion.div>
 
-                    <span
+                    <motion.span
+                        layout
                         style={{
                             textDecoration: task.is_complete ? 'line-through' : 'none',
                             color: task.is_complete ? 'var(--text-muted)' : 'var(--text-main)',
                             fontSize: '1.1rem',
-                            transition: 'all 0.3s ease',
                             marginRight: '1rem',
                             flex: 1,
                             minWidth: 0,
-                            whiteSpace: isExpanded ? 'normal' : 'nowrap',
+                            display: '-webkit-box',
+                            WebkitLineClamp: isExpanded ? 'unset' : 1,
+                            WebkitBoxOrient: 'vertical',
                             overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            wordBreak: isExpanded ? 'break-word' : undefined,
-                            overflowWrap: isExpanded ? 'anywhere' : undefined,
+                            wordBreak: 'break-word',
+                            overflowWrap: 'anywhere',
                             cursor: 'text',
                             userSelect: 'text'
                         }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
                     >
                         {task.title}
-                    </span>
+                    </motion.span>
 
-                    <span style={{
-                        padding: '0.25rem 0.75rem',
-                        borderRadius: '1rem',
-                        fontSize: '0.8rem',
-                        fontWeight: 600,
-                        backgroundColor: task.is_complete ? 'rgba(16, 185, 129, 0.2)' : 'rgba(148, 163, 184, 0.2)',
-                        color: task.is_complete ? 'var(--success)' : 'var(--text-muted)',
-                        marginRight: '1rem',
-                        border: '1px solid',
-                        borderColor: task.is_complete ? 'rgba(16, 185, 129, 0.3)' : 'rgba(148, 163, 184, 0.3)',
-                        flexShrink: 0,
-                        whiteSpace: 'nowrap'
-                    }}>
+                    <motion.span
+                        layout
+                        style={{
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '1rem',
+                            fontSize: '0.8rem',
+                            fontWeight: 600,
+                            backgroundColor: task.is_complete ? 'rgba(16, 185, 129, 0.2)' : 'rgba(148, 163, 184, 0.2)',
+                            color: task.is_complete ? 'var(--success)' : 'var(--text-muted)',
+                            marginRight: '1rem',
+                            border: '1px solid',
+                            borderColor: task.is_complete ? 'rgba(16, 185, 129, 0.3)' : 'rgba(148, 163, 184, 0.3)',
+                            flexShrink: 0,
+                            whiteSpace: 'nowrap'
+                        }}
+                    >
                         {task.is_complete ? 'Complete' : 'Incomplete'}
-                    </span>
+                    </motion.span>
 
-                    <div
+                    <motion.div
+                        layout
                         style={{
                             color: 'var(--text-muted)',
                             display: 'flex',
@@ -125,9 +134,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                         }}
                     >
                         {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                    </div>
-                </div>
-            </div>
+                    </motion.div>
+                </motion.div>
+            </motion.div>
 
             <AnimatePresence>
                 {isExpanded && (
