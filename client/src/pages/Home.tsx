@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useQueryClient } from '@tanstack/react-query';
 import { TaskItem } from '../components/TaskItem';
 import { useAuth } from '../AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
@@ -11,6 +12,7 @@ import { useTasks } from '../hooks/useTasks';
 
 export const Home: React.FC = () => {
     const { user, loading: authLoading } = useAuth();
+    const queryClient = useQueryClient();
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('created_at');
     const [status, setStatus] = useState('all');
@@ -64,6 +66,7 @@ export const Home: React.FC = () => {
 
     const handleLogout = async () => {
         await supabase.auth.signOut();
+        queryClient.removeQueries();
         navigate('/login', { replace: true });
     };
 

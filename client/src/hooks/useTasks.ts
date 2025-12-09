@@ -26,7 +26,7 @@ export const useTasks = (options: UseTasksOptions = {}) => {
     const { user } = useAuth();
     const channelRef = useRef<RealtimeChannel | null>(null);
 
-    const queryKey = ['tasks', search, sort, status];
+    const queryKey = ['tasks', user?.id, search, sort, status];
 
     const {
         data: tasks = [],
@@ -226,7 +226,7 @@ export const useTask = (id: string) => {
     const { user } = useAuth();
 
     return useQuery({
-        queryKey: ['task', id],
+        queryKey: ['task', user?.id, id],
         queryFn: async () => {
             const tasks = await getTasks();
             return tasks.find(t => t.id === id) || null;
