@@ -99,9 +99,10 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                                 marginRight: '1rem',
                                 flex: 1,
                                 minWidth: 0,
-                                display: '-webkit-box',
-                                WebkitLineClamp: isExpanded ? 'unset' : 1,
-                                WebkitBoxOrient: 'vertical',
+                                //Removed line clamp for now
+                                //display: '-webkit-box',
+                                //WebkitLineClamp: isExpanded ? 'unset' : 1,
+                                //WebkitBoxOrient: 'vertical',
                                 overflow: 'hidden',
                                 wordBreak: 'break-word',
                                 overflowWrap: 'anywhere',
@@ -111,10 +112,11 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                         >
                             {task.title}
                         </span>
-
+                        {/* Removed badge for now */}
+                        {/*
                         <span
                             style={{
-                                padding: '0.25rem 0.75rem',
+                                padding: '0.25rem 0.5rem',
                                 borderRadius: '1rem',
                                 fontSize: '0.8rem',
                                 fontWeight: 600,
@@ -129,7 +131,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                         >
                             {task.is_complete ? 'Complete' : 'Incomplete'}
                         </span>
-
+                        */}
                         <div
                             style={{
                                 color: 'var(--text-muted)',
