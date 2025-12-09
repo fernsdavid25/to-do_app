@@ -64,7 +64,13 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                 <motion.div
                     layout
                     className="flex items-center gap-3"
-                    style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '1rem',
+                        flex: 1,
+                        minWidth: 0
+                    }}
                 >
                     <motion.div
                         layout
@@ -101,7 +107,12 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                             cursor: 'text',
                             userSelect: 'text'
                         }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 30,
+                            mass: 0.8
+                        }}
                     >
                         {task.title}
                     </motion.span>
