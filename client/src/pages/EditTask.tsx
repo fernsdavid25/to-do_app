@@ -7,7 +7,7 @@ import { AlertCircle, Loader2 } from 'lucide-react';
 import { useToast } from '../components/Toast';
 import { useTasks, useTask } from '../hooks/useTasks';
 
-const MAX_TITLE_LENGTH = 200;
+const MAX_TITLE_LENGTH = 50;
 
 export const EditTask: React.FC = () => {
     const { id } = useParams<{ id: string }>();

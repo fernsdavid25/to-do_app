@@ -7,7 +7,7 @@ import { AlertCircle } from 'lucide-react';
 import { useToast } from '../components/Toast';
 import { useTasks } from '../hooks/useTasks';
 
-const MAX_TITLE_LENGTH = 200;
+const MAX_TITLE_LENGTH = 50;
 
 export const AddTask: React.FC = () => {
     const [title, setTitle] = useState('');
