@@ -57,14 +57,13 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                 onOpenChange={setIsExpanded}
                 transition={{
                     type: "spring",
-                    stiffness: 300,
+                    stiffness: 400,
                     damping: 30,
-                    mass: 0.8
+                    mass: 0.5
                 }}
             >
                 <DisclosureTrigger>
                     <motion.div
-                        layout
                         onClick={handleCardClick}
                         className="flex items-center gap-3"
                         style={{
@@ -76,8 +75,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                             padding: '1rem'
                         }}
                     >
-                        <motion.div
-                            layout
+                        <div
                             onClick={(e) => {
                                 e.stopPropagation();
                                 onToggle(task.id, !task.is_complete);
@@ -91,10 +89,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                             }}
                         >
                             {task.is_complete ? <Check size={24} /> : <Circle size={24} />}
-                        </motion.div>
+                        </div>
 
-                        <motion.span
-                            layout
+                        <span
                             style={{
                                 textDecoration: task.is_complete ? 'line-through' : 'none',
                                 color: task.is_complete ? 'var(--text-muted)' : 'var(--text-main)',
@@ -111,18 +108,11 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                                 cursor: 'text',
                                 userSelect: 'text'
                             }}
-                            transition={{
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 30,
-                                mass: 0.8
-                            }}
                         >
                             {task.title}
-                        </motion.span>
+                        </span>
 
-                        <motion.span
-                            layout
+                        <span
                             style={{
                                 padding: '0.25rem 0.75rem',
                                 borderRadius: '1rem',
@@ -138,10 +128,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                             }}
                         >
                             {task.is_complete ? 'Complete' : 'Incomplete'}
-                        </motion.span>
+                        </span>
 
-                        <motion.div
-                            layout
+                        <div
                             style={{
                                 color: 'var(--text-muted)',
                                 display: 'flex',
@@ -149,7 +138,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                             }}
                         >
                             {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                        </motion.div>
+                        </div>
                     </motion.div>
                 </DisclosureTrigger>
 
