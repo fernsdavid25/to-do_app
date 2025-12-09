@@ -112,8 +112,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                         >
                             {task.title}
                         </span>
-                        {/* Removed badge for now */}
-                        {/*
+                        
                         <span
                             style={{
                                 padding: '0.25rem 0.5rem',
@@ -131,7 +130,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                         >
                             {task.is_complete ? 'Complete' : 'Incomplete'}
                         </span>
-                        */}
+                        
                         <div
                             style={{
                                 color: 'var(--text-muted)',
