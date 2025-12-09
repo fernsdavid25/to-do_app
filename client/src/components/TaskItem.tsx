@@ -26,6 +26,17 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
         onDelete(task.id);
     };
 
+    const handleCardClick = () => {
+        // Check if user is selecting text
+        const selection = window.getSelection();
+        if (selection && selection.toString().length > 0) {
+            // User is selecting text, don't toggle expansion
+            return;
+        }
+        // No text selected, proceed with toggle
+        setIsExpanded(!isExpanded);
+    };
+
     return (
         <motion.div
             layout
@@ -39,7 +50,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                 overflow: 'hidden',
                 cursor: 'pointer'
             }}
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={handleCardClick}
         >
             <div
                 style={{
@@ -51,7 +62,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
             >
                 <div
                     className="flex items-center gap-3"
-                    style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1 }}
+                    style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: 0 }}
                 >
                     <div
                         onClick={(e) => {
@@ -62,7 +73,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                             color: task.is_complete ? 'var(--success)' : 'var(--text-muted)',
                             display: 'flex',
                             alignItems: 'center',
-                            cursor: 'pointer'
+                            cursor: 'pointer',
+                            flexShrink: 0
                         }}
                     >
                         {task.is_complete ? <Check size={24} /> : <Circle size={24} />}
@@ -74,7 +86,16 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                             color: task.is_complete ? 'var(--text-muted)' : 'var(--text-main)',
                             fontSize: '1.1rem',
                             transition: 'all 0.3s ease',
-                            marginRight: 'auto'
+                            marginRight: '1rem',
+                            flex: 1,
+                            minWidth: 0,
+                            whiteSpace: isExpanded ? 'normal' : 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            wordBreak: isExpanded ? 'break-word' : undefined,
+                            overflowWrap: isExpanded ? 'anywhere' : undefined,
+                            cursor: 'text',
+                            userSelect: 'text'
                         }}
                     >
                         {task.title}
@@ -89,7 +110,9 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                         color: task.is_complete ? 'var(--success)' : 'var(--text-muted)',
                         marginRight: '1rem',
                         border: '1px solid',
-                        borderColor: task.is_complete ? 'rgba(16, 185, 129, 0.3)' : 'rgba(148, 163, 184, 0.3)'
+                        borderColor: task.is_complete ? 'rgba(16, 185, 129, 0.3)' : 'rgba(148, 163, 184, 0.3)',
+                        flexShrink: 0,
+                        whiteSpace: 'nowrap'
                     }}>
                         {task.is_complete ? 'Complete' : 'Incomplete'}
                     </span>
@@ -97,7 +120,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                     <div
                         style={{
                             color: 'var(--text-muted)',
-                            display: 'flex'
+                            display: 'flex',
+                            flexShrink: 0
                         }}
                     >
                         {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
@@ -119,7 +143,11 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete, on
                                 padding: '0 1rem 1rem 3.5rem',
                                 color: 'var(--text-muted)',
                                 fontSize: '0.95rem',
-                                lineHeight: '1.5'
+                                lineHeight: '1.5',
+                                wordBreak: 'break-word',
+                                overflowWrap: 'anywhere',
+                                cursor: 'text',
+                                userSelect: 'text'
                             }}>
                                 {task.description}
                             </div>

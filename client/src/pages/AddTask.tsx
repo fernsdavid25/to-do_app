@@ -7,6 +7,8 @@ import { AlertCircle } from 'lucide-react';
 import { useToast } from '../components/Toast';
 import { useTasks } from '../hooks/useTasks';
 
+const MAX_TITLE_LENGTH = 200;
+
 export const AddTask: React.FC = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -24,6 +26,12 @@ export const AddTask: React.FC = () => {
         if (!title.trim()) {
             setError('Task name is required');
             showToast('Task name is required', 'error');
+            return;
+        }
+
+        if (title.length > MAX_TITLE_LENGTH) {
+            setError(`Task name must be less than ${MAX_TITLE_LENGTH} characters`);
+            showToast(`Task name must be less than ${MAX_TITLE_LENGTH} characters`, 'error');
             return;
         }
 
@@ -92,6 +100,14 @@ export const AddTask: React.FC = () => {
                             }}
                         >
                             Task Name
+                            <span style={{
+                                float: 'right',
+                                fontSize: '0.8rem',
+                                color: title.length > MAX_TITLE_LENGTH ? 'var(--danger)' :
+                                    title.length >= MAX_TITLE_LENGTH * 0.9 ? 'var(--warning, #eab308)' : 'var(--text-muted)'
+                            }}>
+                                {title.length}/{MAX_TITLE_LENGTH}
+                            </span>
                         </label>
                         <input
                             id="title"
@@ -109,10 +125,10 @@ export const AddTask: React.FC = () => {
                             placeholder="What needs to be done?"
                             autoFocus
                             style={{
-                                borderColor: touched && !title.trim() ? 'var(--danger)' : undefined
+                                borderColor: (touched && !title.trim()) || title.length > MAX_TITLE_LENGTH ? 'var(--danger)' : undefined
                             }}
                         />
-                        {touched && !title.trim() && (
+                        {(touched && !title.trim()) || title.length > MAX_TITLE_LENGTH ? (
                             <motion.p
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: 'auto' }}
@@ -122,9 +138,9 @@ export const AddTask: React.FC = () => {
                                     marginTop: '0.5rem'
                                 }}
                             >
-                                Task name cannot be empty
+                                {!title.trim() ? 'Task name cannot be empty' : `Task name exceeds ${MAX_TITLE_LENGTH} characters`}
                             </motion.p>
-                        )}
+                        ) : null}
                     </div>
 
                     <div style={{ marginBottom: '1.5rem' }}>
@@ -169,10 +185,10 @@ export const AddTask: React.FC = () => {
                         <button
                             type="submit"
                             className="btn-primary"
-                            disabled={loading || !title.trim()}
+                            disabled={loading || !title.trim() || title.length > MAX_TITLE_LENGTH}
                             style={{
-                                opacity: (loading || !title.trim()) ? 0.5 : 1,
-                                cursor: (loading || !title.trim()) ? 'not-allowed' : 'pointer'
+                                opacity: (loading || !title.trim() || title.length > MAX_TITLE_LENGTH) ? 0.5 : 1,
+                                cursor: (loading || !title.trim() || title.length > MAX_TITLE_LENGTH) ? 'not-allowed' : 'pointer'
                             }}
                         >
                             {loading ? 'Creating...' : 'Create Task'}
