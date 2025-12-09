@@ -12,11 +12,6 @@
 - **Additional Features**: toast notifications for user feedback, confirmation dialog for deletion, empty states, and loading states.
 
 
-### Handling Edge Cases
-- **Responsive Text Handling**: robust CSS truncation ensures long text and URLs don't break the layout, expanding fully on click.
-- **Input Validation**: enforced 200-character limit and prevented empty submissions on titles to maintain data integrity.
-- **Smart Selection**: intelligent click handling detects text selection, allowing users to copy text without triggering the expand/collapse action.
-
 ## Design Decisions
 
 ### UX/UI Choices
